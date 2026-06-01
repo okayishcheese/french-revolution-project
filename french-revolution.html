@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE FRENCH REVOLUTION</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      background: #0a0a1a;
+      color: #f5f0e8;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .bg-anim {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.04;
+      background:
+        radial-gradient(circle at 20% 50%, #c9a84c 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, #8b0000 0%, transparent 50%);
+      animation: bgPulse 6s ease-in-out infinite;
+    }
+
+    @keyframes bgPulse {
+      0%, 100% { opacity: 0.03; }
+      50% { opacity: 0.07; }
+    }
+
+    .particle {
+      position: fixed;
+      pointer-events: none;
+      opacity: 0.1;
+      z-index: 1;
+      font-size: 2rem;
+      color: #c9a84c;
+      animation: float 15s infinite ease-in-out;
+      text-shadow: 0 0 20px rgba(201,168,76,0.8);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-50px) rotate(15deg); }
+    }
+
+    header {
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(139,0,0,0.72), rgba(10,10,26,0.86)),
+        url('https://s26162.pcdn.co/wp-content/uploads/2025/11/longform-banner-22.png');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 5px solid #c9a84c;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 50%, rgba(201,168,76,0.24) 0%, transparent 50%),
+        radial-gradient(circle at 70% 50%, rgba(139,0,0,0.36) 0%, transparent 50%);
+      animation: heroGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes heroGlow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 60px 50px;
+      background: rgba(10, 10, 26, 0.9);
+      border: 3px solid #c9a84c;
+      box-shadow: 0 0 60px rgba(201,168,76,0.3);
+      animation: heroIn 1.5s ease-out;
+    }
+
+    @keyframes heroIn {
+      from { opacity: 0; transform: translateY(60px) scale(0.9); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .hero::before {
+      content: '⚜ LIBERTÉ • ÉGALITÉ • FRATERNITÉ ⚜';
+      position: absolute;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      letter-spacing: 6px;
+      font-size: 0.7rem;
+      color: #c9a84c;
+      font-weight: 700;
+      font-family: 'Cinzel', serif;
+      animation: textGlow 2s ease-in-out infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes textGlow {
+      0%, 100% { text-shadow: 0 0 5px rgba(201,168,76,0.5); }
+      50% { text-shadow: 0 0 20px rgba(201,168,76,0.8); }
+    }
+
+    .hero-corner {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 3px solid #c9a84c;
+      pointer-events: none;
+    }
+
+    .hero-corner.tl { top: -3px; left: -3px; border-right: none; border-bottom: none; }
+    .hero-corner.tr { top: -3px; right: -3px; border-left: none; border-bottom: none; }
+    .hero-corner.bl { bottom: -3px; left: -3px; border-right: none; border-top: none; }
+    .hero-corner.br { bottom: -3px; right: -3px; border-left: none; border-top: none; }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      color: #c9a84c;
+      font-weight: 900;
+      letter-spacing: 5px;
+      line-height: 1;
+      margin-bottom: 25px;
+      text-shadow: 0 0 30px rgba(201,168,76,0.5);
+      animation: titlePulse 3s ease-in-out infinite;
+    }
+
+    @keyframes titlePulse {
+      0%, 100% { text-shadow: 0 0 30px rgba(201,168,76,0.5); }
+      50% { text-shadow: 0 0 60px rgba(201,168,76,0.8), 0 0 100px rgba(139,0,0,0.3); }
+    }
+
+    .title-line {
+      width: 150px;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, #c9a84c, #8b0000, #c9a84c, transparent);
+      margin: 0 auto 25px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .title-line::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, white, transparent);
+      animation: shine 2s infinite;
+    }
+
+    @keyframes shine { to { left: 100%; } }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #d4c4a0;
+      background: rgba(139,0,0,0.2);
+      padding: 20px 30px;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.8;
+      border: 1px solid rgba(201,168,76,0.3);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 99;
+      background: linear-gradient(90deg, #0a0a1a, #1a1a3e, #0a0a1a);
+      text-align: center;
+      padding: 18px;
+      box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+      border-bottom: 2px solid #c9a84c;
+    }
+
+    nav a {
+      color: #c9a84c;
+      text-decoration: none;
+      margin: 5px 8px;
+      display: inline-block;
+      font-weight: 700;
+      font-size: 0.8rem;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+      padding: 8px 14px;
+      border: 1px solid transparent;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      color: #f5f0e8;
+      border-color: #c9a84c;
+      background: rgba(201,168,76,0.1);
+      box-shadow: 0 0 15px rgba(201,168,76,0.2);
+    }
+
+    section {
+      padding: 80px 6%;
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.8s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    section.reveal {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    section.reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-header { text-align: center; margin-bottom: 60px; }
+
+    .section-title {
+      color: #c9a84c;
+      font-size: 2.5rem;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      letter-spacing: 4px;
+      display: inline-block;
+      position: relative;
+      padding: 0 40px;
+      text-shadow: 0 0 20px rgba(201,168,76,0.3);
+      text-align: center;
+    }
+
+    .section-title::before, .section-title::after {
+      content: '◆';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #8b0000;
+      font-size: 1rem;
+    }
+
+    .section-title::before { left: 10px; }
+    .section-title::after { right: 10px; }
+
+    .section-line {
+      width: 250px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #c9a84c, #8b0000, #c9a84c, transparent);
+      margin: 20px auto 0;
+    }
+
+    .card, .intro-card, .analysis-card, .source-card, .event-card, .blog-post, .comment-box {
+      background: linear-gradient(145deg, rgba(20,20,40,0.9), rgba(10,10,26,0.9));
+      border: 2px solid rgba(201,168,76,0.3);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before, .intro-card::before, .analysis-card::before, .event-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.1), transparent);
+      transition: left 0.6s;
+      pointer-events: none;
+    }
+
+    .card:hover::before, .intro-card:hover::before, .analysis-card:hover::before, .event-card:hover::before { left: 100%; }
+
+    .card:hover, .intro-card:hover, .analysis-card:hover, .event-card:hover {
+      border-color: #c9a84c;
+      box-shadow: 0 0 40px rgba(201,168,76,0.2);
+      transform: translateY(-5px);
+    }
+
+    .intro-card, .analysis-card, .source-card {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 40px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .card { padding: 35px; }
+
+    .card h3, .event-card h3, .analysis-card h3, .blog-post h3 {
+      color: #c9a84c;
+      margin-bottom: 15px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+    }
+
+    .tag {
+      display: inline-block;
+      background: linear-gradient(135deg, #8b0000, #a52a2a);
+      color: #f5f0e8;
+      padding: 8px 18px;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      margin-bottom: 15px;
+      letter-spacing: 3px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      border: 1px solid #c9a84c;
+      box-shadow: 0 0 15px rgba(139,0,0,0.3);
+    }
+
+    .event-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 40px;
+      margin: 40px auto;
+      max-width: 1100px;
+    }
+
+    .event-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to bottom, #c9a84c, #8b0000, #c9a84c);
+    }
+
+    .event-card img, .person-img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border: 3px solid #c9a84c;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      transition: all 0.5s;
+      display: block;
+    }
+
+    .person-img {
+      height: 300px;
+      margin-bottom: 20px;
+    }
+
+    .event-card:hover img, .card:hover .person-img {
+      transform: scale(1.03);
+      box-shadow: 0 15px 50px rgba(201,168,76,0.2);
+    }
+
+    .img-wrapper { position: relative; overflow: hidden; }
+
+    .img-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid rgba(201,168,76,0.5);
+      pointer-events: none;
+    }
+
+    .date {
+      color: #c9a84c;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 3px;
+      font-size: 0.85rem;
+      display: inline-block;
+      background: rgba(139,0,0,0.3);
+      padding: 8px 18px;
+      border: 1px solid #c9a84c;
+    }
+
+    .image-note {
+      font-size: 0.85rem;
+      color: #c9a84c;
+      margin-top: 10px;
+      font-style: italic;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    .full-image-section {
+      position: relative;
+      min-height: 500px;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 60px 0;
+      border-top: 3px solid #c9a84c;
+      border-bottom: 3px solid #c9a84c;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+
+    .full-image-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,0,0,0.62), rgba(10,10,26,0.68));
+    }
+
+    .full-image-section h2 {
+      position: relative;
+      z-index: 2;
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.1rem, 5vw, 4.5rem);
+      color: #c9a84c;
+      text-shadow: 0 0 30px rgba(0,0,0,0.8);
+      letter-spacing: 5px;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .split { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .success { border-top: 4px solid #2d5a3d; }
+    .failure { border-top: 4px solid #8b0000; }
+
+    .dark-section {
+      background: linear-gradient(135deg, #1a0000, #0a0a1a, #1a0000);
+      position: relative;
+    }
+
+    .dark-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(139,0,0,0.1) 0%, transparent 70%);
+      animation: bloodPulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes bloodPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    .dark-section .analysis-card, .dark-section .event-card, .dark-section .poll {
+      background: rgba(10, 0, 0, 0.9);
+      border-color: rgba(139,0,0,0.5);
+    }
+
+    .poll {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 40px;
+      text-align: center;
+      background: rgba(20,20,40,0.9);
+      border: 2px solid #c9a84c;
+      position: relative;
+      box-shadow: 0 0 40px rgba(201,168,76,0.1);
+    }
+
+    .poll::before {
+      content: '?';
+      position: absolute;
+      top: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #c9a84c, #8b0000);
+      color: #f5f0e8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.8rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+      font-family: 'Cinzel', serif;
+      border: 2px solid #f5f0e8;
+    }
+
+    .answer-box {
+      background: rgba(139,0,0,0.2);
+      border: 2px solid #8b0000;
+      padding: 25px;
+      margin: 30px 0;
+    }
+
+    .correct {
+      color: #c9a84c;
+      font-weight: 700;
+      font-size: 1.2rem;
+      font-family: 'Cinzel', serif;
+      text-shadow: 0 0 10px rgba(201,168,76,0.3);
+    }
+
+    .poll button, .comment-box button, .comment-actions button {
+      background: linear-gradient(135deg, #8b0000, #5a0000);
+      color: #f5f0e8;
+      border: 2px solid #c9a84c;
+      padding: 14px 28px;
+      margin: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+      transition: all 0.3s;
+    }
+
+    .poll button:hover, .comment-box button:hover, .comment-actions button:hover {
+      background: linear-gradient(135deg, #c9a84c, #8b0000);
+      box-shadow: 0 0 30px rgba(201,168,76,0.3);
+      transform: scale(1.03);
+    }
+
+    #poll-message {
+      display: none;
+      margin-top: 25px;
+      padding: 25px;
+      background: rgba(10,0,0,0.9);
+      border: 2px solid #c9a84c;
+      font-weight: 700;
+      color: #f5f0e8;
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .blog-post {
+      max-width: 1000px;
+      margin: 45px auto;
+      padding: 0;
+      background: rgba(20,20,40,0.92);
+      border: 2px solid rgba(201,168,76,0.35);
+      position: relative;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      overflow: hidden;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.4);
+    }
+
+    .blog-post::before {
+      content: 'BLOG';
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 5px;
+      color: rgba(201,168,76,0.45);
+      z-index: 3;
+    }
+
+    .blog-author {
+      background: linear-gradient(180deg, rgba(139,0,0,0.55), rgba(10,10,26,0.92));
+      border-right: 3px solid #c9a84c;
+      text-align: center;
+      padding: 28px 20px;
+    }
+
+    .blog-author img {
+      width: 170px;
+      height: 210px;
+      object-fit: cover;
+      border: 3px solid #c9a84c;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 18px;
+    }
+
+    .blog-author strong {
+      display: block;
+      color: #c9a84c;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+
+    .blog-author span {
+      color: #d4c4a0;
+      font-style: italic;
+      font-size: 0.95rem;
+    }
+
+    .blog-content {
+      padding: 38px 42px;
+    }
+
+    .blog-content .blog-date {
+      color: #c9a84c;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 3px;
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .blog-content p {
+      font-size: 1.15rem;
+      color: #e8dcc6;
+      margin-top: 14px;
+    }
+
+    .timeline-box {
+      max-width: 1000px;
+      margin: 50px auto;
+      position: relative;
+      padding-left: 30px;
+      border-left: 4px solid #c9a84c;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin: 0 0 35px 25px;
+      padding: 28px;
+      background: linear-gradient(145deg, rgba(20,20,40,0.9), rgba(10,10,26,0.9));
+      border: 2px solid rgba(201,168,76,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      transition: 0.3s;
+    }
+
+    .timeline-item:hover {
+      transform: translateX(8px);
+      border-color: #c9a84c;
+      box-shadow: 0 0 35px rgba(201,168,76,0.15);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -66px;
+      top: 28px;
+      width: 22px;
+      height: 22px;
+      background: #8b0000;
+      border: 4px solid #c9a84c;
+      border-radius: 50%;
+      box-shadow: 0 0 18px rgba(201,168,76,0.55);
+    }
+
+    .timeline-item h3 {
+      color: #c9a84c;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .timeline-date {
+      display: inline-block;
+      color: #f5f0e8;
+      background: rgba(139,0,0,0.45);
+      border: 1px solid #c9a84c;
+      padding: 6px 14px;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    @media (min-width: 768px) { .gallery { grid-template-columns: repeat(4, 1fr); } }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border: 3px solid #c9a84c;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: all 0.4s;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 60px rgba(201,168,76,0.2);
+      z-index: 10;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .gallery-item:hover img { transform: scale(1.1); }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 15px;
+      background: rgba(10,0,0,0.9);
+      color: #c9a84c;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      transform: translateY(100%);
+      transition: transform 0.3s;
+      z-index: 2;
+      border-top: 2px solid #c9a84c;
+    }
+
+    .gallery-item:hover .gallery-caption { transform: translateY(0); }
+
+    .comment-box {
+      max-width: 800px;
+      margin: 40px auto 0;
+      padding: 40px;
+      background: rgba(20,20,40,0.9);
+      border: 2px solid rgba(201,168,76,0.3);
+    }
+
+    .comment-box h3 {
+      font-family: 'Cinzel', serif;
+      color: #c9a84c;
+      margin-bottom: 20px;
+    }
+
+    .comment-box textarea, .edit-area {
+      width: 100%;
+      min-height: 120px;
+      padding: 20px;
+      margin-top: 15px;
+      border: 2px solid rgba(201,168,76,0.3);
+      background: rgba(10,10,26,0.9);
+      color: #f5f0e8;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      resize: vertical;
+    }
+
+    .comment-box textarea:focus, .edit-area:focus {
+      outline: none;
+      border-color: #c9a84c;
+      box-shadow: 0 0 20px rgba(201,168,76,0.2);
+    }
+
+    #comments-display { margin-top: 30px; display: flex; flex-direction: column; gap: 20px; }
+
+    .user-comment {
+      background: rgba(20,20,40,0.9);
+      padding: 25px;
+      border-left: 4px solid #c9a84c;
+      border-right: 4px solid #8b0000;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .comment-text {
+      margin-top: 10px;
+      white-space: pre-wrap;
+      color: #d4c4a0;
+      font-size: 1.1rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .source-card p {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      transition: all 0.3s;
+      font-size: 0.95rem;
+      color: #d4c4a0;
+    }
+
+    .source-card p:last-child { border-bottom: none; }
+
+    .source-card p:hover {
+      padding-left: 15px;
+      color: #c9a84c;
+      background: rgba(201,168,76,0.05);
+    }
+
+    footer {
+      background: linear-gradient(90deg, #0a0a1a, #1a0000, #0a0a1a);
+      color: #c9a84c;
+      text-align: center;
+      padding: 60px 20px;
+      margin-top: 80px;
+      border-top: 3px solid #c9a84c;
+    }
+
+    footer p {
+      font-family: 'Cinzel', serif;
+      letter-spacing: 3px;
+      margin: 10px 0;
+      font-size: 1rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #8b0000, #c9a84c);
+      color: #f5f0e8;
+      border: 3px solid #c9a84c;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+      z-index: 100;
+    }
+
+    .back-to-top.visible { opacity: 1; transform: translateY(0); }
+
+    .back-to-top:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 10px 40px rgba(201,168,76,0.4);
+    }
+
+    ::-webkit-scrollbar { width: 12px; }
+    ::-webkit-scrollbar-track { background: #0a0a1a; }
+    ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #c9a84c, #8b0000); border-radius: 6px; }
+
+    @media (max-width: 780px) {
+      .event-card { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+      .section-title { font-size: 1.8rem; }
+      .hero { padding: 45px 25px; }
+      .full-image-section { min-height: 360px; background-attachment: scroll; }
+      .full-image-section h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-anim"></div>
+  <div class="particle" style="top: 5%; left: 10%; animation-delay: 0s;">⚜</div>
+  <div class="particle" style="top: 20%; right: 15%; animation-delay: 2s;">⚜</div>
+  <div class="particle" style="top: 40%; left: 5%; animation-delay: 4s;">⚜</div>
+  <div class="particle" style="top: 60%; right: 10%; animation-delay: 6s;">⚜</div>
+  <div class="particle" style="top: 80%; left: 20%; animation-delay: 8s;">⚜</div>
+  <div class="particle" style="top: 90%; right: 25%; animation-delay: 10s;">⚜</div>
+
+  <header id="home">
+    <div class="hero">
+      <div class="hero-corner tl"></div>
+      <div class="hero-corner tr"></div>
+      <div class="hero-corner bl"></div>
+      <div class="hero-corner br"></div>
+      <h1>THE FRENCH REVOLUTION</h1>
+      <div class="title-line"></div>
+      <p class="subtitle">A historical website explaining the causes, major events, key figures, political, social, and economic impacts, and whether the French Revolution achieved its goals.</p>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#home">HOME</a>
+    <a href="#overview">OVERVIEW</a>
+    <a href="#goals">GOALS</a>
+    <a href="#causes">CAUSES</a>
+    <a href="#events">EVENTS</a>
+    <a href="#timeline">TIMELINE</a>
+    <a href="#figures">FIGURES</a>
+    <a href="#women">WOMEN</a>
+    <a href="#terror">TERROR</a>
+    <a href="#analysis">IMPACTS</a>
+    <a href="#turning-point">TURNING POINT</a>
+    <a href="#success">JUDGMENT</a>
+    <a href="#gallery">GALLERY</a>
+    <a href="#sources">SOURCES</a>
+  </nav>
+
+  <section id="overview">
+    <div class="section-header">
+      <h2 class="section-title">PROJECT OVERVIEW</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="full-image-section" style="background-image: url('https://s26162.pcdn.co/wp-content/uploads/2025/11/longform-banner-22.png');">
+      <h2>THE REVOLUTION CHANGES HISTORY</h2>
+    </div>
+
+    <div class="intro-card">
+      <p><strong style="color:#c9a84c;">Main Message:</strong> The French Revolution changed France politically and socially by challenging unfair systems and spreading ideas of liberty, equality, and democracy. However, the revolution also caused violence and instability, showing that not all of its goals were fully achieved.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>What was the French Revolution?</h3>
+        <p>The French Revolution can be defined as a period during which the common citizens of France rebelled against the oppression they were facing, as well as against the absolute rule of the monarchy. Commoners faced many issues such as poverty, high taxes, and a lack of political rights, while the nobility enjoyed comfort and luxury in France.</p>
+      </div>
+      <div class="card">
+        <h3>Why was it important?</h3>
+        <p>The French Revolution was important because it ended the absolute monarchy, reduced the power of the nobility, and gave people more rights and freedoms. Historians still study it today because it changed politics, inspired other revolutions around the world, and showed how people can fight for equality and justice.</p>
+      </div>
+      <div class="card">
+        <h3>Who was most affected?</h3>
+        <p>The people who were most affected were the Third Estate, particularly peasants and laborers, because before the French Revolution they were subjected to excessive taxation, hunger, and poverty. The monarchy and nobility were also affected, since many of their powers and privileges were taken away from them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="goals">
+    <div class="section-header">
+      <h2 class="section-title">GOALS OF THE REVOLUTION</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="full-image-section" style="background-image: url('https://tile.loc.gov/image-services/iiif/service:gdc:gdcwdl:wd:l_:14:43:0:wdl_14430:T0000001/full/pct:100/0/default.jpg');">
+      <h2>LIBERTY AND EQUALITY</h2>
+    </div>
+    <div class="intro-card">
+      <p>There were many goals that influenced people to start the French Revolution. One of the most important goals was replacing the old system, which supported the upper classes while ordinary people had very few rights. The people also wanted freedom of speech, representative government, equal representation, the removal of the noble veto, judicial reform, and a fairer legal system where laws and punishments applied equally to everyone.</p>
+    </div>
+  </section>
+
+  <section id="causes">
+    <div class="section-header">
+      <h2 class="section-title">CAUSES OF THE REVOLUTION</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="full-image-section" style="background-image: url('https://www.science.smith.edu/climatelit/wp-content/uploads/sites/97/2020/08/2020-08-28-1.png');">
+      <h2>CAUSES OF THE REVOLUTION</h2>
+    </div>
+
+    <div class="event-card">
+      <div>
+        <span class="tag">Causes</span>
+        <h3>Social Inequality, Economic Problems, and Enlightenment Ideas</h3>
+        <p>The French Revolution started because of social inequality, economic problems, and Enlightenment ideas. France was divided into the Three Estates: the First Estate was the clergy, the Second Estate was the nobility, and the Third Estate was the common people. The Third Estate made up about 98% of the population but paid most of the taxes, while the First and Second Estates had privileges. France also had huge debt from wars and high food prices caused by poor harvests, which made people angry. Enlightenment thinkers like Jean-Jacques Rousseau inspired people to demand liberty and equality. These problems pushed the people toward revolution.</p>
+      </div>
+      <div class="img-wrapper">
+        <img src="https://www.science.smith.edu/climatelit/wp-content/uploads/sites/97/2020/08/2020-08-28-1.png" alt="Causes of the French Revolution">
+        <p class="image-note">Social inequality and economic pressure</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="events">
+    <div class="section-header">
+      <h2 class="section-title">KEY EVENTS</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="full-image-section" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/91/Estatesgeneral.jpg');">
+      <h2>THE ESTATES GENERAL</h2>
+    </div>
+    <div class="event-card">
+      <div>
+        <p class="date">May 1789</p>
+        <h3>The Estates General</h3>
+        <p>The Estates General was a meeting called by Louis XVI in May 1789 to solve France's financial crisis. It brought together representatives from the three estates. The Third Estate wanted fair voting because they represented most of the population, but each estate only had one vote. This meant the clergy and nobility could outvote them. The unfair system caused anger and led the Third Estate to break away and form the National Assembly, which became a major turning point in the revolution.</p>
+      </div>
+      <div class="img-wrapper">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Estatesgeneral.jpg" alt="Estates General">
+        <p class="image-note">The Estates General Meeting</p>
+      </div>
+    </div>
+
+    <div class="full-image-section" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/6d/Le_Serment_du_Jeu_de_paume.jpg');">
+      <h2>THE TENNIS COURT OATH</h2>
+    </div>
+    <div class="event-card">
+      <div class="img-wrapper">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Le_Serment_du_Jeu_de_paume.jpg" alt="Tennis Court Oath">
+        <p class="image-note">The Tennis Court Oath</p>
+      </div>
+      <div>
+        <p class="date">June 20, 1789</p>
+        <h3>The Tennis Court Oath</h3>
+        <p>The Tennis Court Oath happened when members of the Third Estate were locked out of their usual meeting hall and gathered in a tennis court instead. They swore not to leave until France had a new constitution, showing they were challenging royal authority and demanding political change. It became a key step toward creating a constitutional government in France.</p>
+      </div>
+    </div>
+
+    <div class="full-image-section" style="background-image: url('https://cdn.britannica.com/98/90498-050-5527D0C1/prison-event-Bastille-French-Revolution-engraving-July-14-1789.jpg');">
+      <h2>THE STORMING OF THE BASTILLE</h2>
+    </div>
+    <div class="event-card">
+      <div>
+        <p class="date">July 14, 1789</p>
+        <h3>Storming of the Bastille</h3>
+        <p>The Storming of the Bastille happened when Parisians attacked the Bastille prison to seize weapons and gunpowder. The Bastille represented royal oppression, so its fall became a powerful symbol of rebellion against the monarchy and is seen as the beginning of the French Revolution's active phase.</p>
+      </div>
+      <div class="img-wrapper">
+        <img src="https://cdn.britannica.com/98/90498-050-5527D0C1/prison-event-Bastille-French-Revolution-engraving-July-14-1789.jpg" alt="Storming of the Bastille">
+        <p class="image-note">Storming of the Bastille</p>
+      </div>
+    </div>
+
+    <div class="full-image-section" style="background-image: url('https://tile.loc.gov/image-services/iiif/service:gdc:gdcwdl:wd:l_:14:43:0:wdl_14430:T0000001/full/pct:100/0/default.jpg');">
+      <h2>DECLARATION OF THE RIGHTS OF MAN</h2>
+    </div>
+    <div class="event-card">
+      <div class="img-wrapper">
+        <img src="https://tile.loc.gov/image-services/iiif/service:gdc:gdcwdl:wd:l_:14:43:0:wdl_14430:T0000001/full/pct:100/0/default.jpg" alt="Declaration of the Rights of Man">
+        <p class="image-note">Declaration of the Rights of Man</p>
+      </div>
+      <div>
+        <p class="date">Summer 1789</p>
+        <h3>Declaration of the Rights of Man</h3>
+        <p>The Declaration of the Rights of Man was created in the summer of 1789 by the French National Assembly. It was made to create basic rules and rights for a new government in France. It was a response to the old French monarchy, where rich people had special privileges and ordinary citizens did not have equal rights. Marquis de Lafayette helped draft it with help from Thomas Jefferson and presented it to the National Assembly. The Declaration changed France by introducing ideas of freedom, equality, and individual rights, and it helped create the foundation of a more democratic French government.</p>
+      </div>
+    </div>
+
+    <div class="full-image-section" style="background-image: url('https://germanhistorydocs.org/media/volume-2/image-2942/64329_ca_object_representations_media_5583_frontend.jpg');">
+      <h2>THE ROYAL EXECUTIONS</h2>
+    </div>
+    <div class="event-card">
+      <div>
+        <p class="date">January 21 and October 16, 1793</p>
+        <h3>Executions of Louis XVI and Marie Antoinette</h3>
+        <p>During the French Revolution Louis XVI and Marie Antoinette were executed by guillotine after being accused of betraying France. Louis XVI was executed on January 21, 1793, because people believed he was working against the country and trying to keep his power as king. Marie Antoinette was put on trial later and she was accused of helping France’s enemies and wasting money while the people were suffering and starving. She was executed on October 16, 1793. Their deaths ended the French monarchy.</p>
+      </div>
+      <div class="img-wrapper">
+        <img src="https://germanhistorydocs.org/media/volume-2/image-2942/64329_ca_object_representations_media_5583_frontend.jpg" alt="Execution of Louis XVI and Marie Antoinette">
+        <p class="image-note">Royal executions</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="timeline">
+    <div class="section-header">
+      <h2 class="section-title">REVOLUTION TIMELINE</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="timeline-box">
+      <div class="timeline-item">
+        <span class="timeline-date">May 1789</span>
+        <h3>The Estates General</h3>
+        <p>Louis XVI called the Estates General to solve France’s financial crisis, but the unfair voting system angered the Third Estate and helped push them toward forming the National Assembly.</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-date">June 20, 1789</span>
+        <h3>The Tennis Court Oath</h3>
+        <p>The Third Estate swore not to leave until France had a new constitution, showing that they were directly challenging royal authority.</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-date">July 14, 1789</span>
+        <h3>Storming of the Bastille</h3>
+        <p>Parisians attacked the Bastille to seize weapons and gunpowder, turning the prison into a symbol of rebellion against the monarchy.</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-date">Summer 1789</span>
+        <h3>Declaration of the Rights of Man</h3>
+        <p>The National Assembly introduced ideas of freedom, equality, and individual rights, creating the foundation for a more democratic government.</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-date">1793</span>
+        <h3>Royal Executions</h3>
+        <p>Louis XVI and Marie Antoinette were executed by guillotine, marking the end of the French monarchy.</p>
+      </div>
+
+      <div class="timeline-item">
+        <span class="timeline-date">1793–1794</span>
+        <h3>The Reign of Terror</h3>
+        <p>Robespierre and the Committee of Public Safety used violence and executions to remove suspected enemies of the revolution.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="figures">
+    <div class="section-header">
+      <h2 class="section-title">IMPORTANT PEOPLE</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <img class="person-img" src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Antoine-Fran%C3%A7ois_Callet_-_Louis_XVI%2C_roi_de_France_et_de_Navarre_%281754-1793%29%2C_rev%C3%AAtu_du_grand_costume_royal_en_1779_-_Google_Art_Project.jpg" alt="Louis XVI">
+        <span class="tag">King</span>
+        <h3>Louis XVI</h3>
+        <p>Louis XVI was connected to the fall of the monarchy because people believed he was working against the country and trying to keep his power as king. His execution showed the end of the French monarchy.</p>
+      </div>
+      <div class="card">
+        <img class="person-img" src="https://cdn.britannica.com/40/19040-050-119A02C7/Marie-Antoinette-painting-Elisabeth-Vigee-Lebrun-Versailles-Museum.jpg" alt="Marie Antoinette">
+        <span class="tag">Queen</span>
+        <h3>Marie Antoinette</h3>
+        <p>Marie Antoinette was accused of helping France's enemies and wasting money while the people were suffering and starving. Her execution showed how strongly the revolution rejected royal privilege.</p>
+      </div>
+      <div class="card">
+        <img class="person-img" src="https://cdn.britannica.com/40/184740-050-781F76B3/Maximilien-Robespierre.jpg" alt="Maximilien Robespierre">
+        <span class="tag">Jacobin</span>
+        <h3>Maximilien Robespierre</h3>
+        <p>Maximilien Robespierre (1758–1794) is considered one of the most influential yet controversial figures in the French Revolution. He was an attorney who supported equality and believed that the government should be responsible to common citizens. He served as a leader of the Jacobins during the Reign of Terror.</p>
+      </div>
+      <div class="card">
+        <img class="person-img" src="https://upload.wikimedia.org/wikipedia/commons/0/05/Olympe_de_Gouges.png" alt="Olympe de Gouges">
+        <span class="tag">Women's Rights</span>
+        <h3>Olympe de Gouges</h3>
+        <p>Olympe de Gouges argued that women should have the same rights as men in her Declaration of the Rights of Woman and the Female Citizen. Her example shows how women challenged the limits of the revolution's idea of equality.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="women">
+    <div class="section-header">
+      <h2 class="section-title">ROLE OF WOMEN</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="full-image-section" style="background-image: url('https://cdn.hswstatic.com/gif/womens-march-versailles-symhc.jpg');">
+      <h2>WOMEN IN THE REVOLUTION</h2>
+    </div>
+
+    <div class="event-card">
+      <div>
+        <h3>Women's March on Versailles and Women's Rights</h3>
+        <p>Despite the fact that women had minimal rights at the time of the French Revolution, many participated in protests demanding better living conditions due to worsening poverty and high food prices. The biggest and most famous action taken by women was the Women's March on Versailles in 1789, when thousands of women protested for bread and forced the king to listen to his citizens' complaints. Thus, it is evident that ordinary women played an important role in political events during the revolution.</p>
+        <p>Furthermore, women established political clubs and printed pamphlets regarding equality and women’s rights. One such document was written by Olympe de Gouges, who argued that both genders should have equal rights in her Declaration of the Rights of Woman and the Female Citizen. Nevertheless, although women actively engaged in the struggle, many of their demands were ignored afterward.</p>
+        <p><strong style="color:#c9a84c;">Analysis:</strong> However, despite the revolution promoting liberty and equality, women were still excluded from many political rights. Their participation remained significant because it helped spread revolutionary ideas and inspired future movements for women’s rights.</p>
+      </div>
+      <div class="img-wrapper">
+        <img src="https://cdn.hswstatic.com/gif/womens-march-versailles-symhc.jpg" alt="Women's March on Versailles">
+        <p class="image-note">Women's March on Versailles</p>
+      </div>
+    </div>
+
+    <div class="blog-post">
+      <div class="blog-author">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Olympe_de_Gouges.png" alt="Olympe de Gouges">
+        <strong>Olympe de Gouges</strong>
+        <span>Women’s rights advocate</span>
+      </div>
+      <div class="blog-content">
+        <span class="blog-date">Historical Perspective Blog • 1791</span>
+        <h3>Women Should Not Be Left Out of Equality</h3>
+        <p>“If the Revolution speaks about liberty and equality, women should not be ignored. Women deserve the same rights as men, but many of our demands are still neglected. The Revolution has created change, but it has not fully achieved equality for everyone.”</p>
+      </div>
+    </div>
+
+    <div class="blog-post">
+      <div class="blog-author">
+        <img src="https://cdn.britannica.com/40/184740-050-781F76B3/Maximilien-Robespierre.jpg" alt="Maximilien Robespierre">
+        <strong>Maximilien Robespierre</strong>
+        <span>Jacobin leader</span>
+      </div>
+      <div class="blog-content">
+        <span class="blog-date">Historical Perspective Blog • 1793–1794</span>
+        <h3>Protecting the Revolution at Any Cost</h3>
+        <p>“The Revolution must be protected from anyone who threatens it. Equality and democracy cannot survive if enemies of the Revolution are allowed to destroy it. However, the violence used during this time also created fear and made many people question whether the Revolution was still following its original ideals.”</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="terror" class="dark-section">
+    <div class="section-header">
+      <h2 class="section-title">THE REIGN OF TERROR</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="full-image-section" style="background-image: url('https://cdn.britannica.com/69/132669-050-3B99B7FB/guillotine-execution-de-la-Revolution-canvas-paper-1793.jpg');">
+      <h2>THE REIGN OF TERROR</h2>
+    </div>
+
+    <div class="event-card">
+      <div>
+        <p class="date">1793–1794</p>
+        <h3>The Reign of Terror</h3>
+        <p>One of the most extreme phases of the French Revolution was the Reign of Terror, a period when people started to lose some of the freedoms they had fought for. The government believed it needed to take strict measures to safeguard the revolution, but these measures became more and more severe over time.</p>
+        <p>The Law of Suspects allowed people to be arrested based on suspicion of opposing the revolution, even with little evidence. This caused many citizens to live in fear, having to be careful about what they said and who they trusted. Now, looking back, it’s easy to see how fear started to take over liberty during this time. To me, this shows that the revolution started to move away from some of its original goals, since people could lose their freedom based on a simple accusation.</p>
+      </div>
+      <div class="img-wrapper">
+        <img src="https://cdn.britannica.com/69/132669-050-3B99B7FB/guillotine-execution-de-la-Revolution-canvas-paper-1793.jpg" alt="Reign of Terror guillotine">
+        <p class="image-note">Reign of Terror</p>
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <h3>Robespierre: Platinum Challenge</h3>
+      <p>Maximilien Robespierre (1758–1794) is considered one of the most influential yet controversial figures in the French Revolution. He was an attorney who supported equality and believed that the government should be responsible to common citizens. Robespierre served as a leader of the Jacobins during the time when the Reign of Terror took place. Robespierre argued that the revolution should have been protected at all costs; therefore, those who were charged as opponents of the revolution faced execution by guillotine. The number of victims at that time reached up to 17,000 people. Though Robespierre helped overthrow the monarchy and spread ideals of equality and democracy, he used extremely violent methods in achieving it. Consequently, Robespierre was arrested in 1794 and sentenced to death, thus ending the Reign of Terror.</p>
+    </div>
+
+    <div class="poll" id="interactive">
+      <h3>Interactive Question</h3>
+      <p>Did the Reign of Terror protect the Revolution, or did it go against the Revolution's original goals of liberty and equality?</p>
+      <div class="answer-box">
+        <p><span class="correct">Stronger historical answer: It went against the Revolution's goals.</span></p>
+        <p>The evidence shows that the Reign of Terror created fear and violence, and the Law of Suspects allowed people to be arrested without strong evidence. Although the government claimed it was protecting the revolution, many innocent people lost their freedom and lives.</p>
+      </div>
+      <button type="button" onclick="showPollMessage('protect')">It protected the Revolution</button>
+      <button type="button" onclick="showPollMessage('against')">It went against liberty and equality</button>
+      <div id="poll-message"></div>
+    </div>
+  </section>
+
+  <section id="analysis">
+    <div class="section-header">
+      <h2 class="section-title">POLITICAL, SOCIAL, AND ECONOMIC IMPACTS</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="full-image-section" style="background-image: url('https://tile.loc.gov/image-services/iiif/service:gdc:gdcwdl:wd:l_:14:43:0:wdl_14430:T0000001/full/pct:100/0/default.jpg');">
+      <h2>THE IMPACTS</h2>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Political Impact</h3>
+        <p>The revolution ended the absolute monarchy and led to a republic. It introduced important ideas like equality before the law and people having a say in government through elected representatives. However, the revolution also became very violent during the Reign of Terror, when thousands were executed. In the end, the chaos allowed Napoleon to take control as a military dictator. Even so, the revolution inspired other countries to fight for democracy and challenged the idea that kings had divine power.</p>
+      </div>
+      <div class="card">
+        <h3>Social Impact</h3>
+        <p>The revolution removed the special privileges of nobles and clergy, so they no longer had automatic power over ordinary people. It promoted the idea that all men should be equal under the law. The church lost much of its influence. The Women's March on Versailles showed women's political power, but they still did not get equal rights, and slavery was not completely abolished in French colonies. Despite these limits, the revolution changed how people thought about social class and fairness.</p>
+      </div>
+      <div class="card">
+        <h3>Economic Impact</h3>
+        <p>The revolution ended feudal taxes and gave land from nobles and the church to peasants, which helped many poor families own property for the first time. But in the short term, it caused inflation, food shortages, and money problems because the new paper currency, assignats, lost its value so badly that by 1796 it was almost worthless. Later, Napoleon helped fix the economy by creating the Bank of France and stabilizing prices, but the constant wars still cost a lot of money. Overall, the revolution broke the old feudal system and helped create a more modern economy.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="turning-point">
+    <div class="section-header">
+      <h2 class="section-title">BIGGEST TURNING POINT</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="analysis-card">
+      <h3>Storming of the Bastille</h3>
+      <p>In my opinion, the most significant turning point of the French Revolution was the storming of the Bastille on July 14, 1789. This is when citizens finally decided to resist the monarchy's authority, defend their rights, and show the monarchs that they had enough of unfair treatment. The members of the Third Estate comprised the largest part of the French population, paid taxes, and suffered economically, but still did not have any influence on politics. The Bastille's capture showed people's willingness to change the current situation for the better. For me, this event marked a new stage of the French Revolution because it inspired people to revolt against the monarchs who had lost control of France.</p>
+    </div>
+  </section>
+
+  <section id="success">
+    <div class="section-header">
+      <h2 class="section-title">SUCCESSES AND FAILURES</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="split">
+      <div class="card success">
+        <h3>Successes</h3>
+        <p>The French Revolution was successful in ending the absolute monarchy and reducing the power of the nobles in France. It also spread ideas like liberty, equality, and natural rights, which later influenced other countries and future democratic movements. The Declaration of the Rights of Man was one of the biggest achievements because it stated that citizens should have rights and freedoms under the law.</p>
+      </div>
+      <div class="card failure">
+        <h3>Failures</h3>
+        <p>However, the revolution also had many failures because violence and political problems continued for years. The Reign of Terror led to the deaths of thousands of people, and many citizens still did not have equal rights, especially women. In the end, Napoleon became emperor, which showed that France moved back toward authoritarian rule instead of fully achieving democracy and equality.</p>
+      </div>
+    </div>
+
+    <div class="analysis-card">
+      <h3>Overall Judgment</h3>
+      <p>I think the French Revolution achieved some of its goals, but not all of them. It ended the absolute monarchy and gave people more freedom and rights, which was one of the main goals. It also spread ideas like equality and democracy. However, the revolution became very violent during the Reign of Terror, and many innocent people died. Also, not everyone got equal rights, especially women and poor people. Overall, the revolution changed France in important ways, but it did not fully create the fair society people wanted.</p>
+    </div>
+
+    <div class="comment-box">
+      <h3>Comment Section</h3>
+      <p>Do you think the French Revolution achieved its goals?</p>
+      <textarea id="comment-input" placeholder="Write your answer here..."></textarea>
+      <button type="button" onclick="addComment()">Submit Comment</button>
+      <div id="comments-display"></div>
+    </div>
+  </section>
+
+  <section id="long-term">
+    <div class="section-header">
+      <h2 class="section-title">LONG-TERM IMPACT QUESTION</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="analysis-card">
+      <h3>Which impact mattered most long-term?</h3>
+      <p>Of the three impacts, the political impact of the French Revolution mattered most because it permanently changed how people thought about government and authority. The revolution ended absolute monarchy and introduced the radical idea that ordinary people should have a say through elected representatives. Even though the Reign of Terror led to thousands of executions and Napoleon became a military dictator, the core political ideas survived. The revolution challenged the belief that kings had divine power and inspired other countries to fight for democracy in the decades that followed.</p>
+      <p>The social and economic changes were more limited or temporary. Nobles and clergy lost their privileges, but women still lacked equal rights and slavery continued in French colonies. Feudal taxes ended and peasants gained land, but the assignats became almost worthless, causing short term chaos. More importantly, these social and economic changes could not have happened without the political shift first. Ending the monarchy and stripping nobles of their power made it possible to remove noble privileges and cancel feudal taxes. Therefore, the political impact matters most because it was the foundation for everything else.</p>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="section-header">
+      <h2 class="section-title">IMAGE GALLERY</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item"><img src="https://s26162.pcdn.co/wp-content/uploads/2025/11/longform-banner-22.png" alt="Project Overview"><div class="gallery-caption">Project Overview</div></div>
+      <div class="gallery-item"><img src="https://www.science.smith.edu/climatelit/wp-content/uploads/sites/97/2020/08/2020-08-28-1.png" alt="Causes"><div class="gallery-caption">Causes of the Revolution</div></div>
+      <div class="gallery-item"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Estatesgeneral.jpg" alt="Estates General"><div class="gallery-caption">Estates General</div></div>
+      <div class="gallery-item"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Le_Serment_du_Jeu_de_paume.jpg" alt="Tennis Court Oath"><div class="gallery-caption">Tennis Court Oath</div></div>
+      <div class="gallery-item"><img src="https://cdn.britannica.com/98/90498-050-5527D0C1/prison-event-Bastille-French-Revolution-engraving-July-14-1789.jpg" alt="Storming of the Bastille"><div class="gallery-caption">Storming of the Bastille</div></div>
+      <div class="gallery-item"><img src="https://tile.loc.gov/image-services/iiif/service:gdc:gdcwdl:wd:l_:14:43:0:wdl_14430:T0000001/full/pct:100/0/default.jpg" alt="Declaration of Rights"><div class="gallery-caption">Declaration of the Rights of Man</div></div>
+      <div class="gallery-item"><img src="https://germanhistorydocs.org/media/volume-2/image-2942/64329_ca_object_representations_media_5583_frontend.jpg" alt="Royal Executions"><div class="gallery-caption">Royal Executions</div></div>
+      <div class="gallery-item"><img src="https://cdn.hswstatic.com/gif/womens-march-versailles-symhc.jpg" alt="Women in Revolution"><div class="gallery-caption">Women in the Revolution</div></div>
+      <div class="gallery-item"><img src="https://cdn.britannica.com/69/132669-050-3B99B7FB/guillotine-execution-de-la-Revolution-canvas-paper-1793.jpg" alt="Reign of Terror"><div class="gallery-caption">Reign of Terror</div></div>
+      <div class="gallery-item"><img src="https://cdn.britannica.com/40/184740-050-781F76B3/Maximilien-Robespierre.jpg" alt="Robespierre"><div class="gallery-caption">Maximilien Robespierre</div></div>
+      <div class="gallery-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Antoine-Fran%C3%A7ois_Callet_-_Louis_XVI%2C_roi_de_France_et_de_Navarre_%281754-1793%29%2C_rev%C3%AAtu_du_grand_costume_royal_en_1779_-_Google_Art_Project.jpg" alt="Louis XVI"><div class="gallery-caption">Louis XVI</div></div>
+      <div class="gallery-item"><img src="https://cdn.britannica.com/40/19040-050-119A02C7/Marie-Antoinette-painting-Elisabeth-Vigee-Lebrun-Versailles-Museum.jpg" alt="Marie Antoinette"><div class="gallery-caption">Marie Antoinette</div></div>
+      <div class="gallery-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Olympe_de_Gouges.png" alt="Olympe de Gouges"><div class="gallery-caption">Olympe de Gouges</div></div>
+    </div>
+  </section>
+
+  <section id="sources">
+    <div class="section-header">
+      <h2 class="section-title">WORKS CITED</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="source-card">
+      <p>“French Revolution (Part 1).” <em>Khan Academy</em>, Khan Academy, www.khanacademy.org/humanities/world-history/1600s-1800s/french-revolution-tutorial/v/french-revolution-part-1.</p>
+      <p>Sherry, Bennett. “Economic and Material Causes of Revolt.” <em>Khan Academy</em>, Khan Academy, www.khanacademy.org/humanities/world-history-project-ap/xb41992e0ff5e0f09:unit-5-revolutions/xb41992e0ff5e0f09:5-2nationalism-and-revolutions/a/article-economic-and-material-causes-of-revolt-ap.</p>
+      <p>Alpha History. “The Tennis Court Oath.” <em>French Revolution</em>, 19 Nov. 2012, alphahistory.com/frenchrevolution/tennis-court-oath/.</p>
+      <p>“Tennis Court Oath | Summary & Facts.” <em>Encyclopedia Britannica</em>, 20 July 1998, www.britannica.com/event/Tennis-Court-Oath?</p>
+      <p>Volle, Adam. “Storming of the Bastille | French Revolution, Causes, & Impact.” <em>Encyclopedia Britannica</em>, 25 Oct. 2022, www.britannica.com/event/storming-of-the-Bastille?</p>
+      <p>History.com Editors. “French Revolutionaries Storm the Bastille | July 14, 1789 | HISTORY.” <em>HISTORY</em>, 24 Nov. 2009, www.history.com/this-day-in-history/July-14/french-revolutionaries-storm-bastille.</p>
+      <p>“Declaration of the Rights of Man and of the Citizen.” <em>Élysée</em>, www.elysee.fr/en/french-presidency/the-declaration-of-the-rights-of-man-and-of-the-citizen. Accessed 8 May 2026.</p>
+      <p>“Declaration of the Rights of Man and of the Citizen.” <em>Encyclopaedia Britannica</em>, Encyclopaedia Britannica, Inc., www.britannica.com/topic/Declaration-of-the-Rights-of-Man-and-of-the-Citizen. Accessed 8 May 2026.</p>
+      <p>“King Louis XVI Executed.” <em>HISTORY</em>, A&E Television Networks, 27 May 2025, www.history.com/this-day-in-history/january-21/king-louis-xvi-executed. Accessed 8 May 2026.</p>
+      <p>“Executions of Louis XVI and Marie Antoinette, King and Queen of France, 1793.” <em>Unofficial Royalty</em>, www.unofficialroyalty.com/executions-of-louis-xvi-and-marie-antoinette-king-and-queen-of-france-1793/. Accessed 11 May 2026.</p>
+      <p>Mark, Harrison W., and Pierre-Antoine Demachy. “Reign of Terror.” <em>World History Encyclopedia</em>, Nov. 2022, www.worldhistory.org/Reign_of_Terror.</p>
+      <p>“BBC Radio 4 - in Our Time, the French Revolution’s Reign of Terror.” <em>BBC</em>, 26 May 2005, www.bbc.co.uk/programmes/p003k9cf.</p>
+      <p>History.com Editors. “French Revolution: Timeline, Causes, Key Figures and Events | HISTORY.” <em>HISTORY</em>, 20 Apr. 2026, www.history.com/articles/french-revolution.</p>
+      <p>“Maximilien Robespierre.” <em>BBC History</em>, BBC, www.bbc.co.uk/history/historic_figures/robespierre_maximilien.shtml.</p>
+      <p>Bouloiseau, Marc. “Maximilien Robespierre.” <em>Encyclopaedia Britannica</em>, 2 May 2026, www.britannica.com/biography/Maximilien-Robespierre. Accessed 7 May 2026.</p>
+      <p>“Women in the French Revolution.” <em>EBSCO Research Starters</em>, www.ebsco.com/research-starters/women-s-studies-and-feminism/women-french-revolution.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Historical Website Project: The French Revolution</p>
+  </footer>
+
+  <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑</button>
+
+  <script>
+    function showPollMessage(answer) {
+      const messageBox = document.getElementById('poll-message');
+      if (!messageBox) return;
+
+      if (answer === 'protect') {
+        messageBox.innerHTML = 'This was the government’s claim, but it is not the strongest answer. The research shows that the Reign of Terror created fear, executions, and loss of freedoms.';
+      } else {
+        messageBox.innerHTML = 'Correct. This is the stronger answer because the Law of Suspects allowed arrests without strong evidence, and many people lost their freedom and lives.';
+      }
+      messageBox.style.display = 'block';
+    }
+
+    function addComment() {
+      const input = document.getElementById('comment-input');
+      const commentsDisplay = document.getElementById('comments-display');
+      if (!input || !commentsDisplay) return;
+
+      if (input.value.trim() === '') {
+        alert('Please write a comment before submitting.');
+        return;
+      }
+
+      const comment = document.createElement('div');
+      comment.classList.add('user-comment');
+      comment.innerHTML = `
+        <strong>Visitor Response:</strong>
+        <div class="comment-text"></div>
+        <div class="comment-actions">
+          <button type="button" onclick="editComment(this)">Edit</button>
+          <button type="button" onclick="deleteComment(this)">Delete</button>
+        </div>
+      `;
+      comment.querySelector('.comment-text').textContent = input.value;
+      commentsDisplay.prepend(comment);
+      input.value = '';
+    }
+
+    function editComment(button) {
+      const comment = button.closest('.user-comment');
+      const textDiv = comment.querySelector('.comment-text');
+      const currentText = textDiv.textContent;
+      textDiv.innerHTML = `
+        <textarea class="edit-area"></textarea>
+        <button type="button" onclick="saveComment(this)">Save</button>
+      `;
+      textDiv.querySelector('.edit-area').value = currentText;
+    }
+
+    function saveComment(button) {
+      const comment = button.closest('.user-comment');
+      const textDiv = comment.querySelector('.comment-text');
+      const editArea = comment.querySelector('.edit-area');
+      const newText = editArea.value.trim();
+      if (newText !== '') textDiv.textContent = newText;
+    }
+
+    function deleteComment(button) {
+      const comment = button.closest('.user-comment');
+      if (comment) comment.remove();
+    }
+
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+      if (!backToTop) return;
+      if (window.scrollY > 500) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+</html>
